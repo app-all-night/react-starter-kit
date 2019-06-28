@@ -1,6 +1,6 @@
 # Setup
 
-[x] - VS Code Debugger
+[*] - VS Code Debugger
 
 [Here's the source](https://facebook.github.io/create-react-app/docs/setting-up-your-editor#debugging-in-the-editor)
 
@@ -26,7 +26,7 @@ Then add the block below to your `launch.json` file and put it inside the `.vsco
 }
 ```
 
-[x] - ESLint
+[*] - ESLint
 
 [Here's the source](https://itnext.io/how-eslint-makes-me-a-better-react-developer-237fb14c00ae)
 
@@ -57,7 +57,7 @@ For `.eslintrc` file
   }
 ```
 
-[x] Prettier
+[*] Prettier
 
 ```
 {
@@ -79,7 +79,7 @@ For `.eslintrc` file
 }
 ```
 
-[x] - Jest/ Enzyme
+[*] - Jest/ Enzyme
 
 [Here's the source](https://thetrevorharmon.com/blog/configuring-jest-and-enzyme-in-create-react-app-on-typescript)
 
