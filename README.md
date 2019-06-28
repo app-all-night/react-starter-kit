@@ -1,44 +1,125 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Setup
 
-## Available Scripts
+[x] - VS Code Debugger
 
-In the project directory, you can run:
+[Here's the source](https://facebook.github.io/create-react-app/docs/setting-up-your-editor#debugging-in-the-editor)
 
-### `npm start`
+You would need to have the latest version of VS Code and VS Code Chrome Debugger Extension installed.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Then add the block below to your `launch.json` file and put it inside the `.vscode` folder in your app’s root directory.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+```
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Chrome",
+      "type": "chrome",
+      "request": "launch",
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}/src",
+      "sourceMapPathOverrides": {
+        "webpack:///src/*": "${webRoot}/*"
+      }
+    }
+  ]
+}
+```
 
-### `npm test`
+[x] - ESLint
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Here's the source](https://itnext.io/how-eslint-makes-me-a-better-react-developer-237fb14c00ae)
 
-### `npm run build`
+```
+npm install --save-dev eslint eslint-config-airbnb eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+For `.eslintrc` file
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+```
+{
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "env":
+    {
+      "node": true,
+      "es6": true,
+      "browser": true
+    },
+  "rules":
+    {
+      "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+      "implicit-arrow-linebreak": "off",
+      "comma-dangle": "off",
+      "indent": "off",
+      "no-trailing-spaces": "off"
+    }
+  }
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+[x] Prettier
 
-### `npm run eject`
+```
+{
+  "arrowParens": "avoid",
+  "bracketSpacing": true,
+  "htmlWhitespaceSensitivity": "css",
+  "insertPragma": false,
+  "jsxBracketSameLine": false,
+  "jsxSingleQuote": false,
+  "printWidth": 80,
+  "proseWrap": "preserve",
+  "quoteProps": "as-needed",
+  "requirePragma": false,
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "all",
+  "useTabs": false
+}
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+[x] - Jest/ Enzyme
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Here's the source](https://thetrevorharmon.com/blog/configuring-jest-and-enzyme-in-create-react-app-on-typescript)
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```
+yarn add @types/jest ts-jest -D
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`jest.config.js`
 
-## Learn More
+```
+module.exports = {
+  "roots": [
+    "<rootDir>/src"
+  ],
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest"
+  },
+  "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$",
+  "moduleFileExtensions": [
+    "ts",
+    "tsx",
+    "js",
+    "jsx",
+    "json",
+    "node"
+  ],
+}
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+For `enzyme`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+yarn add enzyme @types/enzyme enzyme-to-json enzyme-adapter-react-16 -D
+```
+
+Enzyme needs to be configured and instantiated for it to work properly. If it doesn't already exist, create the file `setupTests.js` in your `src` directory and add the following to it:
+
+```
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() });
+```
